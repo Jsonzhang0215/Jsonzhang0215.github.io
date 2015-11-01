@@ -1,0 +1,724 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="一首歌，一段时光" />
+
+
+
+  <meta name="keywords" content="IconFont,webfont,前端,设计," />
+
+
+
+  <link rel="alternate" href="/rss.xml" title="Refrain" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="&amp;emsp;&amp;emsp;现在很多网站和app都采用扁平化设计，使用Icon Font来表现图标非常方便，因为字体文件小、矢量化，所以在开发中很方便，并且不存在失真的情况，所以带来的视觉体验也是很不错的，但是它没有办法做一些变形动效。闲话不多说，说说这两天工作中遇到的一个坑，也总结了一下填坑的方法，在文章的后面我会给大家一个教程讲解一下。&amp;emsp;&amp;emsp;因项目中需要拓展一个功能，功能的入口拓">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于Icon Font的一个坑">
+<meta property="og:url" content="http://refrain.space/2015/10/12/diywebfont/index.html">
+<meta property="og:site_name" content="Refrain">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;现在很多网站和app都采用扁平化设计，使用Icon Font来表现图标非常方便，因为字体文件小、矢量化，所以在开发中很方便，并且不存在失真的情况，所以带来的视觉体验也是很不错的，但是它没有办法做一些变形动效。闲话不多说，说说这两天工作中遇到的一个坑，也总结了一下填坑的方法，在文章的后面我会给大家一个教程讲解一下。&amp;emsp;&amp;emsp;因项目中需要拓展一个功能，功能的入口拓">
+<meta property="og:image" content="http://refrain.space/./fontfile.jpg">
+<meta property="og:image" content="http://refrain.space/./usedmark.png">
+<meta property="og:image" content="http://refrain.space/./myiconfont-1.png">
+<meta property="og:image" content="http://refrain.space/./myiconfont-2.png">
+<meta property="og:image" content="http://refrain.space/./newicon-1.png">
+<meta property="og:image" content="http://refrain.space/./newicon-2.png">
+<meta property="og:image" content="http://refrain.space/./newicon-3.png">
+<meta property="og:image" content="http://refrain.space/./newicon-4.png">
+<meta property="og:image" content="http://refrain.space/./newicon-5.png">
+<meta property="og:image" content="http://refrain.space/./newicon-6.png">
+<meta property="og:image" content="http://refrain.space/./saveicon.png">
+<meta property="og:image" content="http://refrain.space/./fontsquirrel.png">
+<meta property="og:image" content="http://refrain.space/./iconfont.png">
+<meta property="og:updated_time" content="2015-11-01T15:24:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于Icon Font的一个坑">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;现在很多网站和app都采用扁平化设计，使用Icon Font来表现图标非常方便，因为字体文件小、矢量化，所以在开发中很方便，并且不存在失真的情况，所以带来的视觉体验也是很不错的，但是它没有办法做一些变形动效。闲话不多说，说说这两天工作中遇到的一个坑，也总结了一下填坑的方法，在文章的后面我会给大家一个教程讲解一下。&amp;emsp;&amp;emsp;因项目中需要拓展一个功能，功能的入口拓">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'hide'
+  };
+</script>
+
+  <title> 关于Icon Font的一个坑 | Refrain </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?7005cd6452e01141f15f29cfd92d02eb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Refrain</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              关于Icon Font的一个坑
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-10-12T01:50:34+08:00" content="2015-10-12">
+            2015-10-12
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/10/12/diywebfont/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/12/diywebfont/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>&emsp;&emsp;现在很多网站和app都采用扁平化设计，使用Icon Font来表现图标非常方便，因为字体文件小、矢量化，所以在开发中很方便，并且不存在失真的情况，所以带来的视觉体验也是很不错的，但是它没有办法做一些变形动效。闲话不多说，说说这两天工作中遇到的一个坑，也总结了一下填坑的方法，在文章的后面我会给大家一个教程讲解一下。<br>&emsp;&emsp;因项目中需要拓展一个功能，功能的入口拓展在导航上，为了与之前的设计一致，所以需要为这个入口添加一个图标。导航的图标部分就是使用的IconFont，但是想不到在拓展图标文件的时候遇到了一些问题。<a id="more"></a><br>&emsp;&emsp;我把这个新图标的需求和设计师沟通后拿到了新的字体文件(.ttf)，但是不能直接使用，因为很多浏览器并不支持TrueType格式，所以我需要把它转换为不同格式的字体文件之后才能使用。我们可以使用<a href="http://www.fontsquirrel.com/tools/webfont-generator" target="_blank" rel="external">Fontsquirrel</a>这个网站将.ttf类型的字体转换成我们网页中可以使用的格式。</p>
+<h3 id="浏览器对字体格式的支持情况：">浏览器对字体格式的支持情况：</h3><hr>
+<blockquote>
+<p><strong>TrueType格式(.ttf)</strong><br>Windows和Mac上常见的字体格式，是一种原始格式，因此它并没有为网页进行优化处理。<br>浏览器支持：IE9+,FireFox3.5+,Chrome4.0+,Safari3+,Opera10+,IOS Mobile Safari4.2+<br><strong>OpenType格式(.otf)</strong><br>以TrueType为基础，也是一种原始格式，但提供更多的功能。<br>浏览器支持：FireFox3.5+,Chrome4.0+,Safari3.1+,Opera10.0+,IOS Mobile Safari4.2+<br><strong>Web Open Font格式(.woff)</strong><br>针对网页进行特殊优化，因此是Web字体中最佳格式，它是一个开放的TrueType/OpenType的压缩版，同时支持元数据包的分离。<br>浏览器支持：IE9+, FireFox3.5+, Chrome6+, Safari3.6+,Opera11.1+<br><strong>Embedded Open Type格式(.eot)</strong><br>IE专用字体格式，可以从TrueType格式创建此格式字体。<br>浏览器支持：IE4+</p>
+</blockquote>
+<p>&emsp;&emsp;在我满心欢喜的把新文件替换到项目中之后问题出现了：新图标并没有想我所期望的那样显示在页面上，它的位置上空白一片。一开始我以为把旧版本的字体传到了网站,检查后发现确实是新版本的文件,那么问题可能出现在导出的文件中。结果大吃一惊：<strong>导出的文件中新图标不见了!</strong><br>&emsp;&emsp;最终在查看导出的文件时发现我们新增的图标没有出现在文件中。<br>先看一下我们制作的ttf文件(对截图做了一些处理,只留下了一些常见图标,部分图标无法公开)：<br><img src="./fontfile.jpg" alt="字体文件"><br>然后查看一下这些图标所占用的字符：<br><img src="./usedmark.png" alt="已使用的字符"><br>&emsp;&emsp;图中标注黄绿色的背景就是我们已使用的字符，我们发现有两个黄绿色的格子里没有字符，对比后发现被过滤掉的就是这些空白位置的字符。<small>（这里面的数量没有上图那么多，因为有一些图标占用的Unicode编码没在这个范围内，其它位置的图标其实也被过滤了一部分，但是在项目中并没有用到，所以这个问题到现在才发现。）</small><br>&emsp;&emsp;问题找到了，是这个网站导出的问题，所以我把没有处理过的字体文件替换到项目中，到Chrom中测试，依然无法正常显示，原来网站过滤这些地方是有原因的，错误可能是出现在新图标的Unicode编码上面。</p>
+<blockquote>
+<p>“下面会涉及到一些专业知识，对这些不感兴趣的同学可以<a href="#这里是教程">点击这里跳过</a>。”</p>
+</blockquote>
+<p>&emsp;&emsp;学过计算机的朋友可能都清楚，计算机内常见的字符集有：ASCII、GB2312、BIG5、 GB18030、Unicode等，关于字符集更多的信息点击这里：<a href="http://baike.baidu.com/view/51987.htm" target="_blank" rel="external">百度百科</a>，<a href="https://zh.wikipedia.org/wiki/%E5%AD%97%E7%AC%A6%E9%9B%86" target="_blank" rel="external">Wikipedia</a>。<br>先从网页上的字符集着手，HTML支持的字符集有很多种，具体支持那些字符集可以查看<a href="http://www.w3school.com.cn/tags/html_ref_charactersets.asp" target="_blank" rel="external">这里</a>现在绝大多数网页使用的字符集都是Unicode(utf-8)，那么我们来看一下Unicode的编码表是如何规定的：<a href="http://baike.baidu.com/view/40801.htm" target="_blank" rel="external">Unicode(百度)</a>，<a href="https://en.wikipedia.org/wiki/Unicode" target="_blank" rel="external">Unicode(Wiki)</a>，我们发现计算机中字符的表示并不是连续的，从已使用的字符那张图中我们就可以发现了，既然不是连续的，为什么新制作的字体是乱码？我们来分析下问题出在了哪里：我添加的新图标在“已使用的字符”的图中7F的位置:<br>&emsp;&emsp;我们先换算成10进制：7*16^1+16*16^0=128<br>也就是第128个字符。Unicode中第128位是什么？Unicode中最前面的256个Unicode字符集字符对应于256个ISO-8859-1字符，那我们就去查一下这个ISO-8859-1这个字符集，用HTML来表示就是<small><em>&amp;#127;</em></small>（从第0位开始）我们发现它表示的是 DEL 意义是delete，代表着删除。也就是说这个位置的字符是一个<a href="http://baike.baidu.com/view/1112575.htm" target="_blank" rel="external">控制字符</a>，代表着特定的功能，它不是表示一个<strong>可以显示在网页上的字符</strong>，所以那些空白位置上的图标无法正常显示也是理所当然的啦。</p>
+<blockquote>
+<p>所有的Unicode编码表可以<a href="http://unicode-table.com/cn/#control-character" target="_blank" rel="external">点击这里</a>查询，上面的例子用这个查看比较直观。</p>
+</blockquote>
+<p>&emsp;&emsp;原来胡乱的拓展图标文件很不明智，所以我们要先找到那些可以显示在页面上的字符，然后替换掉它们<small>(从图上看我们替换了很多常见的字符)</small>，但是图标一旦多起来制作和维护都很麻烦，有没有一种让我们肆无忌惮的拓展图标的方法呢？答案是有的。<br>&emsp;&emsp;Unicode在规定的时候中也考虑了这个问题，它设计了一个“自行使用区域(Private Use Zone)” ，设计它的目的就是留给人们自行使用的(可以用来造字)，分布位置为：E000-F8FF，可容纳6400个字符，在这个区域里，我们就可以随心所欲的创作了，下面开始制作我们喜欢的图标吧！<br>&emsp;&emsp;下面是干货啦，如何制作我们自己的Icon Font：</p>
+<h3 id="这里是教程">这里是教程</h3><ol>
+<li><p>这里使用的是FontCreator6.5来制作我们的字体，首先我们新建一个空的字体文件File &gt; New：<br><img src="./myiconfont-1.png" alt="新建文件-1"></p>
+</li>
+<li><p>这样我们的文件就新建成功了，注意图中红框的部分不要删除，如果删除了字体无法正常使用，<strong>切记切记！！！</strong><br><img src="./myiconfont-2.png" alt="新建文件-2"></p>
+</li>
+<li><p>我们用AI画一个播放(play)的三角形（其实是不会用T-T），并将整个图形选中Ctrl+C：<br><img src="./newicon-1.png" alt="制作图标-1"></p>
+</li>
+<li><p>选择Insert &gt; Glyphs 按照图中所示，我们在文档的最后插入一个符号：<br><img src="./newicon-2.png" alt="新建符号-1"></p>
+</li>
+<li><p>插入成功后在文件的最后面会新增一个方格，我们双击它Ctrl+C，调整好位置:<br><img src="./newicon-3.png" alt="新建符号-2"></p>
+</li>
+</ol>
+<p>6.添加好图标后我们编辑一下这个图标的属性，右击选择“Properties”<br><img src="./newicon-4.png" alt="新建符号-3"></p>
+<p>7.关键的一步来了，在这里我们要设置这个图标的Unicode值和在Windows中的映射。之前讲到Unicode设计了自行使用的区块(E000-F8FF)供我们使用，在这个范围内我们取一个值：F000。<br>将Unicode的值设置为F000后点击ADD按钮。注意红框中的配置。<br><img src="./newicon-5.png" alt="新建符号-4"><br>同样将Windows中Unicode的值也为F000。<br><img src="./newicon-6.png" alt="新建符号-5"></p>
+<p>8.在左上角选择File&gt;Save as将我们的字体保存为ttf文件，并上传到<a href="http://www.fontsquirrel.com/tools/webfont-generator" target="_blank" rel="external">Fontsquirrel</a>转换为我们网页所需要的格式。<br><img src="./saveicon.png" alt="保存文件"><br><img src="./fontsquirrel.png" alt="fontsquirrel"></p>
+<p>下载后我们就可以把图标应用在网页上了。我们来测试一下:<br>首先我们先使用@font-face声明一下我们的图标<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* iconfont.css */</span></span><br><span class="line"><span class="at_rule">@<span class="keyword">charset:</span> <span class="string">'utf-8'</span></span>;</span><br><span class="line"><span class="at_rule">@<span class="keyword">font-face</span></span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">font-family</span>:<span class="value"> <span class="string">'myicon'</span></span></span>;</span><br><span class="line">    <span class="comment">/* path为字体文件的路径 */</span></span><br><span class="line">    <span class="rule"><span class="attribute">src</span>:<span class="value"> <span class="function">url</span>(<span class="string">'./path/myiconfont.eot'</span>)</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">src</span>:<span class="value"> <span class="function">url</span>(<span class="string">'./path/myiconfont.eot?#iefix'</span>) <span class="function">format</span>(<span class="string">'embedded-opentype'</span>),</span><br><span class="line">         <span class="function">url</span>(<span class="string">'./path/myiconfont.woff2'</span>) <span class="function">format</span>(<span class="string">'woff2'</span>),</span><br><span class="line">         <span class="function">url</span>(<span class="string">'./path/myiconfont.woff'</span>) <span class="function">format</span>(<span class="string">'woff'</span>),</span><br><span class="line">         <span class="function">url</span>(<span class="string">'./path/myiconfont.ttf'</span>) <span class="function">format</span>(<span class="string">'truetype'</span>),</span><br><span class="line">         <span class="function">url</span>(<span class="string">'./path/myiconfont.svg#myicon'</span>) <span class="function">format</span>(<span class="string">'svg'</span>)</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">font-weight</span>:<span class="value"> normal</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">font-style</span>:<span class="value"> normal</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="comment">/* 使用iconfont来表示我们的图标 */</span></span><br><span class="line"><span class="class">.iconfont</span><span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">font-family</span>:<span class="value"> <span class="string">'myicon'</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">font-style</span>:<span class="value"> normal</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">font-weight</span>:<span class="value"> normal</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>然后是font.html<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- font.html --&gt;</span></span><br><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"X-UA-Compatible"</span> <span class="attribute">content</span>=<span class="value">"IE=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">title</span>&gt;</span><span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">href</span>=<span class="value">"./iconfont.css"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css"></span><br><span class="line">        *<span class="rules">&#123;<span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">0</span></span></span>; <span class="rule"><span class="attribute">padding</span>:<span class="value"><span class="number">0</span></span></span>;&#125;</span></span><br><span class="line">        <span class="class">.list</span><span class="rules">&#123; <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">35px</span></span></span>; <span class="rule"><span class="attribute">margin-left</span>:<span class="value"> <span class="number">10px</span></span></span>;<span class="rule"><span class="attribute">line-height</span>:<span class="value"><span class="number">35px</span></span></span>; <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#ccc</span></span></span>;&#125;</span></span><br><span class="line">        <span class="class">.list</span> <span class="class">.iconfont</span> <span class="rules">&#123; <span class="rule"><span class="attribute">display</span>:<span class="value"> inline-block</span></span>; <span class="rule"><span class="attribute">margin-right</span>:<span class="value"> <span class="number">8px</span></span></span>;<span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#333</span></span></span>; &#125;</span></span><br><span class="line">    </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 字体测试 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"list"</span>&gt;</span><span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">'iconfont'</span>&gt;</span>&amp;#xf000;<span class="tag">&lt;/<span class="title">i</span>&gt;</span>点击播放<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"list"</span>&gt;</span><span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">'iconfont'</span>&gt;</span>&amp;#xf000;<span class="tag">&lt;/<span class="title">i</span>&gt;</span>点击播放<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"list"</span>&gt;</span><span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">'iconfont'</span>&gt;</span>&amp;#xf000;<span class="tag">&lt;/<span class="title">i</span>&gt;</span>点击播放<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"list"</span>&gt;</span><span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">'iconfont'</span>&gt;</span>&amp;#xf000;<span class="tag">&lt;/<span class="title">i</span>&gt;</span>点击播放<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"list"</span>&gt;</span><span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">'iconfont'</span>&gt;</span>&amp;#xf000;<span class="tag">&lt;/<span class="title">i</span>&gt;</span>点击播放<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>Chrome下显示的效果：<br><img src="./iconfont.png" alt="测试"></p>
+<h3 id="总结">总结</h3><p>&emsp;&emsp;到这里这我们的教程就结束了，在制作IconFont时总结以下几点：</p>
+<ol>
+<li>我们可以替换可用的字符来制作我们的IconFont.</li>
+<li>网页的编码格式为utf-8.</li>
+<li>Unicode自行使用区的范围是E000-F8FF，制作的时候记住从E000开始计数，进制为16进制，教程里的工具是FontCreater，版本为6.5.</li>
+<li>最后文中的写法是兼容ie6的，如果项目中不需要兼容ie678有更好的方案，这种写法藕合度较高，而且不方便阅读<small>(从代码上看无法知道是什么图标)</small>，维护起来很麻烦。<br><strong>如果文中有什么地方出现错误，或者在制作过程中出现什么问题欢迎在下方留言交流～！</strong></li>
+</ol>
+<p style="text-align:right"><small>by Jason</small></p>
+
+
+
+
+
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/IconFont/" rel="tag">#IconFont</a>
+          
+            <a href="/tags/webfont/" rel="tag">#webfont</a>
+          
+            <a href="/tags/前端/" rel="tag">#前端</a>
+          
+            <a href="/tags/设计/" rel="tag">#设计</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/05/start/" rel="next">写在开始</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/10/12/diywebfont/"
+     data-title="关于Icon Font的一个坑"
+     data-content=""
+     data-url="http://refrain.space/2015/10/12/diywebfont/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/10/12/diywebfont/"
+                   data-title="关于Icon Font的一个坑" data-url="http://refrain.space/2015/10/12/diywebfont/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/avatar.jpg" alt="Jason" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Jason</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">一首歌，一段时光</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Jsonzhang0215" target="_blank">github</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/imbajjikanade" target="_blank">weibo</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/json-zhang-57" target="_blank">zhihu</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">一些朋友</p>
+            
+              <span class="links-of-author-item">
+              <a href="https://www.meetrue.com/" target="_blank">Meetrue</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器对字体格式的支持情况："><span class="nav-number">1.</span> <span class="nav-text">浏览器对字体格式的支持情况：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#这里是教程"><span class="nav-number">2.</span> <span class="nav-text">这里是教程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/js/my.js"></script>
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"refrain"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
