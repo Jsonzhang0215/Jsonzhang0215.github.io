@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Jason's workshop]]></subtitle>
   <link href="/rss.xml" rel="self"/>
   <link href="http://refrain.space/"/>
-  <updated>2015-11-01T15:24:36.000Z</updated>
+  <updated>2015-11-02T01:23:05.000Z</updated>
   <id>http://refrain.space/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://refrain.space/2015/10/12/diywebfont/"/>
     <id>http://refrain.space/2015/10/12/diywebfont/</id>
     <published>2015-10-11T17:50:34.000Z</published>
-    <updated>2015-11-01T15:24:36.000Z</updated>
+    <updated>2015-11-02T01:23:05.000Z</updated>
     <content type="html"><![CDATA[<p>&emsp;&emsp;现在很多网站和app都采用扁平化设计，使用Icon Font来表现图标非常方便，因为字体文件小、矢量化，所以在开发中很方便，并且不存在失真的情况，所以带来的视觉体验也是很不错的，但是它没有办法做一些变形动效。闲话不多说，说说这两天工作中遇到的一个坑，也总结了一下填坑的方法，在文章的后面我会给大家一个教程讲解一下。<br>&emsp;&emsp;因项目中需要拓展一个功能，功能的入口拓展在导航上，为了与之前的设计一致，所以需要为这个入口添加一个图标。导航的图标部分就是使用的IconFont，但是想不到在拓展图标文件的时候遇到了一些问题。<a id="more"></a><br>&emsp;&emsp;我把这个新图标的需求和设计师沟通后拿到了新的字体文件(.ttf)，但是不能直接使用，因为很多浏览器并不支持TrueType格式，所以我需要把它转换为不同格式的字体文件之后才能使用。我们可以使用<a href="http://www.fontsquirrel.com/tools/webfont-generator" target="_blank" rel="external">Fontsquirrel</a>这个网站将.ttf类型的字体转换成我们网页中可以使用的格式。</p>
 <h3 id="浏览器对字体格式的支持情况：">浏览器对字体格式的支持情况：</h3><hr>
 <blockquote>
@@ -29,7 +29,7 @@
 <blockquote>
 <p>“下面会涉及到一些专业知识，对这些不感兴趣的同学可以<a href="#这里是教程">点击这里跳过</a>。”</p>
 </blockquote>
-<p>&emsp;&emsp;学过计算机的朋友可能都清楚，计算机内常见的字符集有：ASCII、GB2312、BIG5、 GB18030、Unicode等，关于字符集更多的信息点击这里：<a href="http://baike.baidu.com/view/51987.htm" target="_blank" rel="external">百度百科</a>，<a href="https://zh.wikipedia.org/wiki/%E5%AD%97%E7%AC%A6%E9%9B%86" target="_blank" rel="external">Wikipedia</a>。<br>先从网页上的字符集着手，HTML支持的字符集有很多种，具体支持那些字符集可以查看<a href="http://www.w3school.com.cn/tags/html_ref_charactersets.asp" target="_blank" rel="external">这里</a>现在绝大多数网页使用的字符集都是Unicode(utf-8)，那么我们来看一下Unicode的编码表是如何规定的：<a href="http://baike.baidu.com/view/40801.htm" target="_blank" rel="external">Unicode(百度)</a>，<a href="https://en.wikipedia.org/wiki/Unicode" target="_blank" rel="external">Unicode(Wiki)</a>，我们发现计算机中字符的表示并不是连续的，从已使用的字符那张图中我们就可以发现了，既然不是连续的，为什么新制作的字体是乱码？我们来分析下问题出在了哪里：我添加的新图标在“已使用的字符”的图中7F的位置:<br>&emsp;&emsp;我们先换算成10进制：7*16^1+16*16^0=128<br>也就是第128个字符。Unicode中第128位是什么？Unicode中最前面的256个Unicode字符集字符对应于256个ISO-8859-1字符，那我们就去查一下这个ISO-8859-1这个字符集，用HTML来表示就是<small><em>&amp;#127;</em></small>（从第0位开始）我们发现它表示的是 DEL 意义是delete，代表着删除。也就是说这个位置的字符是一个<a href="http://baike.baidu.com/view/1112575.htm" target="_blank" rel="external">控制字符</a>，代表着特定的功能，它不是表示一个<strong>可以显示在网页上的字符</strong>，所以那些空白位置上的图标无法正常显示也是理所当然的啦。</p>
+<p>&emsp;&emsp;学过计算机的朋友可能都清楚，计算机内常见的字符集有：ASCII、GB2312、BIG5、 GB18030、Unicode等，关于字符集更多的信息点击这里：<a href="http://baike.baidu.com/view/51987.htm" target="_blank" rel="external">百度百科</a>，<a href="https://zh.wikipedia.org/wiki/%E5%AD%97%E7%AC%A6%E9%9B%86" target="_blank" rel="external">Wikipedia</a>。<br>先从网页上的字符集着手，HTML支持的字符集有很多种，具体支持那些字符集可以查看<a href="http://www.w3school.com.cn/tags/html_ref_charactersets.asp" target="_blank" rel="external">这里</a>现在绝大多数网页使用的字符集都是Unicode(utf-8)，那么我们来看一下Unicode的编码表是如何规定的：<a href="http://baike.baidu.com/view/40801.htm" target="_blank" rel="external">Unicode(百度)</a>，<a href="https://en.wikipedia.org/wiki/Unicode" target="_blank" rel="external">Unicode(Wiki)</a>，我们发现计算机中字符的表示并不是连续的，从已使用的字符那张图中我们就可以发现了，既然不是连续的，为什么新制作的字体是乱码？我们来分析下问题出在了哪里：我添加的新图标在“已使用的字符”的图中7F的位置:<br>&emsp;&emsp;我们先换算成10进制：7*16^1+15*16^0=127<br>也就是第128个字符(编码是从0开始)。Unicode中第128位是什么？Unicode中最前面的256个Unicode字符集字符对应于256个ISO-8859-1字符，那我们就去查一下这个ISO-8859-1这个字符集，用HTML来表示就是<small><em>&amp;#127;</em></small>（从第0位开始）我们发现它表示的是 DEL 意义是delete，代表着删除。也就是说这个位置的字符是一个<a href="http://baike.baidu.com/view/1112575.htm" target="_blank" rel="external">控制字符</a>，代表着特定的功能，它不是表示一个<strong>可以显示在网页上的字符</strong>，所以那些空白位置上的图标无法正常显示也是理所当然的啦。</p>
 <blockquote>
 <p>所有的Unicode编码表可以<a href="http://unicode-table.com/cn/#control-character" target="_blank" rel="external">点击这里</a>查询，上面的例子用这个查看比较直观。</p>
 </blockquote>
