@@ -1,3 +1,8 @@
+#description .quote-text {
+  text-align: left;
+  text-indent: 2em;
+  font-size: 1.2em;
+}
 /* normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif; /* 1 */
@@ -1055,7 +1060,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #d2a8ff;
+  background: #470632;
 }
 .sidebar-nav {
   margin: 0;
